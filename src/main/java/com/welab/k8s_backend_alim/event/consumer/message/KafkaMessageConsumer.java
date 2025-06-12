@@ -18,7 +18,7 @@ public class KafkaMessageConsumer {
             topics = SiteUserInfoEvent.Topic,
             properties = {
             JsonDeserializer.VALUE_DEFAULT_TYPE
-                    + ":com.welab.backend_alim.event.consumer.message.user.SiteUserInfoEvent"})
+                    + ":com.welab.k8s_backend_alim.event.consumer.message.user.SiteUserInfoEvent"})
     void handleSiteUserInfoEvent(SiteUserInfoEvent event, Acknowledgment ack) {
         log.info("[Kafka Receive] 이벤트 수신됨! raw={}", event);
         log.info("SiteUserInfoEvent 처리. userId={}", event.getUserId());
