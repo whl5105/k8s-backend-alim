@@ -1,2 +1,6 @@
 server:
   port: 8080
+
+spring:
+  kafka:
+    bootstrap-servers: k8s-external-kafka-service:9092
