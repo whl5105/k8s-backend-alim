@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-backend-alim-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-backend-alim
+  template:
+    metadata:
+      labels:
+        app: k8s-backend-alim
+    spec:
+      containers:
+        - name: k8s-backend-alim
+          image: suin4328/k8s-backend-alim:0.0.1
+          imagePullPolicy: Always
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: dev
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: /etc/config
+              name: backend-alim-config-volume
+      volumes:
+        - name: backend-alim-config-volume
+          configMap:
+            name: backend-alim-config
+            items:
+              - key: application-dev.yml
+                path: application-dev.yml
